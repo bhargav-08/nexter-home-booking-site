@@ -1,0 +1,72 @@
+.header {
+  background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)), url(../img/hero.jpeg);
+  background-size: cover;
+  background-position: center;
+  grid-column: full-start / col-end 6;
+  padding: 4rem 7rem 7rem;
+  display: grid;
+
+  // THINK: Here we have set image and button with 1fr so that that area will be reduced on small screen devices while maintaing all other area look good
+  grid-template-rows: 1fr min-content minmax(min-content, 6rem) 1fr min-content;
+  grid-row-gap: 1.6rem;
+
+  // THINK: We created one column with width of min-content and max-content  so that nexter logo always sit in center with  h1 heading  
+  grid-template-columns: minmax(min-content, max-content);
+  justify-content: center;
+
+  @media only screen and (max-width:$bp-medium) {
+    // THINK: Here, moved the realtors down to header part 
+    grid-column: 1/-1;
+  }
+
+  @media only screen and (max-width:$bp-small) {
+    padding: 5rem;
+  }
+
+  &__logo {
+    height: 3rem;
+    justify-self: center;
+  }
+
+  &__seenon-text {
+    font-size: 1.4rem;
+    color: $color-grey-light-2;
+
+    display: grid;
+
+    // HACK: ::before and ::after elements are also considered as grid items so we assign them "1fr-Seen on -1fr" layout and set both (before and after) as bgcolor filled line 
+    grid-template-columns: 1fr max-content 1fr;
+    grid-gap: 1.5rem;
+    align-items: center;
+
+    &::after,
+    &::before {
+      content: '';
+      height: 2px;
+      display: block;
+      background-color: currentColor;
+    }
+  }
+
+  &__seenon-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    grid-column-gap: 2rem;
+
+    img {
+      max-height: 2rem;
+      max-width: 100%;
+      filter: brightness(70%);
+    }
+  }
+
+  &__btn {
+    align-self: start;
+    justify-self: start;
+  }
+
+
+
+}

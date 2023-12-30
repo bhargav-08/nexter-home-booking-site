@@ -1,0 +1,30 @@
+.features {
+  grid-column: center-start / center-end;
+  margin: 15rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 6rem;
+
+  // HACK: This align items is necessary so that feature__text with 2 line and 3 line looks same i.e starts from beginning otherwise it gets stretch
+  align-items: flex-start;
+
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 1.5rem 2.5rem;
+
+  &__icon {
+    width: 4rem;
+    height: 4rem;
+    fill: $color-primary;
+
+    grid-row: 1 / span 2;
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+
+}

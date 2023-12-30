@@ -1,0 +1,85 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #B28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+// FONT VARIABLES
+$font-primary: 'Nunito', sans-serif;
+$font-display: 'Josefin Sans', sans-serif;
+
+
+// BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px
+$bp-small: 37.5em; // 600px
+
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 1rem=10px
+
+  @media only screen and (max-width:$bp-largest) {
+    font-size: 50%; //1rem=8px
+  }
+}
+
+body {
+  font-family: $font-primary;
+  font-weight: 300;
+  color: $color-grey-dark-2;
+  line-height: 1.6;
+}
+
+.container {
+
+  display: grid;
+
+  /* THINK: header is 80vh fixed for all screen size,
+  feature is adjusting its column count according to screen size so min-content,
+  story__picture and story__content is 40vw,
+  and last 3 part( homes,gallery,footer) are totally depended on screen size so set it to min-content
+  */
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+
+
+  /* THINK: columns should be of 8-grid-system and since max-width is 1100px-1200px we select 1140px => 1140/8=142.5 ~ 14rem
+  But since giving fixed size to column not make them shrink we use minmax so that column will have minimum of content-width and maximum of 14rem.
+  Apart from this we give sidebar 8rem fixed size,
+  Two 1fr with min. of 6rem so that body does not just touch the screen and there have some space.These are used to create full-edge section like gallery and header which will be first to shrink when screen size got to reduces and then grid itself.
+    */
+  grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])[center-end] minmax(6rem, 1fr) [full-end];
+
+
+  @media only screen and (max-width:$bp-large) {
+    // THINK: Here, we removed sidebar from left and placed on top streching across whole screen
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])[center-end] minmax(6rem, 1fr) [full-end];
+  }
+
+
+  @media only screen and (max-width:$bp-medium) {
+
+    // TIP: Always have space between "-" "+" operator in calc like calc(100vh - 6rem) and not calc(100vh -6rem)
+
+    // THINK: Here, moved the realtors down to header part 
+    grid-template-rows: 6rem calc(100vh - 6rem);
+  }
+
+}

@@ -1,0 +1,76 @@
+.story {
+
+  &__picture {
+    background-image: linear-gradient(rgba($color-primary, .5), rgba($color-primary, .5)), url(../img/back.jpg);
+    grid-column: full-start /col-end 4;
+    background-size: cover;
+
+    // Set it as grid and align 2 photos in that grid
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+
+    @media only screen and (max-width:$bp-medium) {
+      // THINK: Spread the picture and content across the full screen
+      grid-column: 1/-1;
+      padding: 6rem;
+    }
+  }
+
+
+  &__img--1 {
+    width: 100%;
+    grid-row: 2 / 6;
+    grid-column: 2 / 6;
+
+    @media only screen and (max-width:$bp-medium) {
+      // THINK: Spread the picture and content across the full screen
+      grid-column: 1/5;
+      grid-row: 1/-1;
+      width: 100%;
+
+
+    }
+  }
+
+  &__img--2 {
+    width: 115%;
+    grid-row: 4 / 6;
+    grid-column: 4 / -1;
+    z-index: 20;
+
+    @media only screen and (max-width:$bp-medium) {
+      // THINK: Spread the picture and content across the full screen
+      grid-row: 1/-1;
+      width: 100%;
+    }
+  }
+
+
+  &__content {
+    background-color: $color-grey-light-1;
+    grid-column: col-start 5 / full-end;
+    padding: 6rem 8vw;
+
+    @media only screen and (max-width:$bp-medium) {
+      // THINK: Spread the picture and content across the full screen
+      grid-column: 1/-1;
+      grid-row: 5/6;
+    }
+
+    // THINK: Since this is 1-d we use flex to center the item
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+  }
+
+  &__text {
+    font-size: 1.6rem;
+    font-style: italic;
+    margin-bottom: 8rem;
+  }
+
+}
